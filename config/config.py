@@ -4,7 +4,11 @@ import streamlit as st
 def get_api_key(provider="groq"):
     """Fetch API keys to abstract logic from models."""
     try:
-        key_name = "GROQ_API_KEY"
+        if provider == "openai":
+            key_name = "OPENAI_API_KEY"
+        else:
+            key_name = "GROQ_API_KEY"
+            
         api_key = os.getenv(key_name)
         if not api_key and key_name in st.secrets:
             api_key = st.secrets[key_name]

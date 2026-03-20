@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from models.llm import get_chatgroq_model
+from models.llm import get_chatgroq_model, get_openai_model
 from utils.document_loader import load_documents
 from utils.text_splitter import split_documents
 from utils.vector_store import build_vector_store
@@ -143,7 +143,10 @@ def chat_page(response_mode, selected_model):
 
     trimester_buttons()
 
-    chat_model = get_chatgroq_model(selected_model)
+    if selected_model.startswith("gpt"):
+        chat_model = get_openai_model(selected_model)
+    else:
+        chat_model = get_chatgroq_model(selected_model)
 
     if "vector_ready" not in st.session_state:
         index, texts, sources = build_index()
@@ -295,8 +298,9 @@ def main():
         selected_model = st.selectbox(
             "Model",
             [
+                "gpt-4o",
                 "llama-3.1-8b-instant",
-                "llama3-8b-8192"
+                "llama3-8b-8192",
             ]
         )
 
