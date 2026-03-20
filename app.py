@@ -12,7 +12,7 @@ from utils.text_splitter import split_documents
 from utils.vector_store import build_vector_store
 from utils.retriever import retrieve_context
 from utils.web_search import search_web
-from utils.response_builder import build_system_context, get_confidence_label
+from utils.response_builder import build_prompt, get_confidence_label
 
 
 import re
@@ -47,15 +47,17 @@ def quick_trimester_query(n):
 
 
 # ---------- CHAT WITH MEMORY ----------
-def get_chat_response(chat_model, history, system_context):
+def get_chat_response(chat_model, history, new_prompt):
     try:
-        formatted = [SystemMessage(content=system_context)]
+        formatted = []
 
         for m in history[-4:]:
             if m["role"] == "user":
                 formatted.append(HumanMessage(content=m["content"]))
             else:
                 formatted.append(AIMessage(content=m["content"]))
+
+        formatted.append(HumanMessage(content=new_prompt))
 
         return chat_model.invoke(formatted).content
 
@@ -209,7 +211,8 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                     "roll_no": st.session_state.get("roll_no", "")
                 }
 
-                system_context = build_system_context(
+                final_prompt = build_prompt(
+                    prompt,
                     rag_chunks,
                     web_context,
                     response_mode,
@@ -219,7 +222,7 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                 response = get_chat_response(
                     chat_model,
                     st.session_state.messages,
-                    system_context
+                    final_prompt
                 )
 
                 confidence = get_confidence_label(score)

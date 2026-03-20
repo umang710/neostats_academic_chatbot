@@ -1,8 +1,8 @@
 from typing import List, Optional, Dict
 
-def build_system_context(rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
+def build_prompt(query: str, rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
     """
-    Constructs the system prompt payload containing rules and context.
+    Constructs the final prompt context payload to send to the LLM agent.
     
     Args:
         rag_chunks (List[str]): Text segments retrieved from local syllabus FAISS index.
@@ -11,7 +11,7 @@ def build_system_context(rag_chunks: List[str], web_context: str, response_mode:
         user_profile (Optional[Dict[str, str]]): Standard active user session information payload.
         
     Returns:
-        str: The fully synthesized SystemMessage content string.
+        str: The fully synthesized context injection string block.
     """
     rag_text = "\n\n".join(rag_chunks) if rag_chunks else ""
     web_text = web_context if web_context else ""
@@ -26,27 +26,28 @@ def build_system_context(rag_chunks: List[str], web_context: str, response_mode:
         else "Give structured academic explanation. BUT if the question asks about syllabus subjects, FIRST give a clean bullet list of subjects, THEN a short explanation."
     )
 
-    system_prompt = f"""
-You are the official MSc Data Science academic assistant.
+    final_prompt = f"""You are the official MSc Data Science academic assistant.
 {profile_text}
-RULES:
-1. Answer ONLY using the information in the SYLLABUS CONTEXT below. Focus specifically on the user's latest query.
-2. You ARE allowed to do math, aggregate credits, or summarize the syllabus context to answer questions like "total credits".
-3. NEVER invent or hallucinate subject names, trimesters, or course codes. If it's not in the context, say you don't know.
-4. Do NOT dump the raw context text into your response. Write naturally and conversationally.
-5. If the user asks for the subjects in a Trimester, provide a clean, readable bulleted list of the Course Codes and Subject Names.
-6. If the question asks about data science concepts or AI trends, use the WEB CONTEXT to provide an educational answer.
-
-SYLLABUS CONTEXT:
+BACKGROUND KNOWLEDGE:
+Syllabus Database:
 {rag_text}
 
-WEB CONTEXT:
+Web Search Results:
 {web_text}
 
-RESPONSE STYLE:
-{style_block}
+INSTRUCTIONS:
+1. Answer the user's question friendly and naturally.
+2. Use the Syllabus Database for course questions (credits, subjects). You can aggregate and sum credits. Do NOT paste the raw syllabus text back.
+3. Use the Web Search Results for AI/tech concept questions.
+4. If you don't know the answer, just say you don't know. Do not invent course names.
+5. Format your response clearly. Use bullet points for syllabus subjects if asked. Keep it mostly concise unless asked otherwise.
+
+USER QUESTION:
+{query}
+
+Please answer the user's question directly based on the instructions and background knowledge.
 """
-    return system_prompt
+    return final_prompt
 
 def get_confidence_label(score: float) -> str:
     """
