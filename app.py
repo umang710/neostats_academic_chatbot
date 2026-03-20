@@ -47,17 +47,22 @@ def quick_trimester_query(n):
 
 
 # ---------- CHAT WITH MEMORY ----------
-def get_chat_response(chat_model, history, new_prompt):
+def get_chat_response(chat_model, history, system_prompt, user_query):
     try:
-        formatted = []
+        from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
+        
+        # 1. Provide the Strict System Bounds
+        formatted = [SystemMessage(content=system_prompt)]
 
-        for m in history[-4:]:
-            if m["role"] == "user":
+        # 2. Append only the last 2 interactions to avoid poisoned prompt-looping
+        for m in history[-2:]:
+            if m["role"] == "user" and m["content"] != user_query:
                 formatted.append(HumanMessage(content=m["content"]))
-            else:
+            elif m["role"] == "assistant":
                 formatted.append(AIMessage(content=m["content"]))
 
-        formatted.append(HumanMessage(content=new_prompt))
+        # 3. Exactly append the final user query naturally.
+        formatted.append(HumanMessage(content=user_query))
 
         return chat_model.invoke(formatted).content
 
@@ -211,8 +216,7 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                     "roll_no": st.session_state.get("roll_no", "")
                 }
 
-                final_prompt = build_prompt(
-                    prompt,
+                system_context = build_prompt(
                     rag_chunks,
                     web_context,
                     response_mode,
@@ -222,7 +226,8 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                 response = get_chat_response(
                     chat_model,
                     st.session_state.messages,
-                    final_prompt
+                    system_context,
+                    prompt
                 )
 
                 confidence = get_confidence_label(score)
