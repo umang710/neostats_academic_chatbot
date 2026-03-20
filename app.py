@@ -36,7 +36,8 @@ def get_trimester_direct(n):
                 f"Credits {row['Credits']} — CIA {row['CIA Marks']} — ESE {row['ESE Marks']} — {row['Type']} course."
             )
         return "\n".join(rows)
-    except Exception:
+    except Exception as e:
+        print(f"Direct Trimester Error: {e}")
         return ""
 
 
