@@ -47,7 +47,7 @@ def load_documents() -> List[Dict[str, str]]:
                 })
 
         # Optional secondary fallback: curated course detail txt
-        course_folder = os.path.join(BASE_DIR, "kb", "course_details")
+        course_folder = os.path.join(BASE_DIR, "kb", "course details")
         if os.path.exists(course_folder):
 
             for f in os.listdir(course_folder):
