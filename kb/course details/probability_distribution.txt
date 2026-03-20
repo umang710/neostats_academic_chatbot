@@ -1,0 +1,15 @@
+# Probability and Distribution Theory (MDS132)
+**Course Overview:**
+This Trimester 1 core course establishes the foundational understanding of random variables and statistical distributions required to build machine learning models.
+
+**Key Topics Covered:**
+* Axiomatic approach to probability
+* Conditional probability and Bayes' Theorem
+* Discrete and Continuous Random Variables
+* Common Probability Distributions (Binomial, Poisson, Normal, Exponential)
+* Expected values, variance, and moments
+* Joint and Marginal distributions
+* Central Limit Theorem and Law of Large Numbers.
+
+**Learning Outcomes:**
+Students will confidently evaluate uncertainty and leverage probabilistic reasoning necessary for advanced statistical inference and Bayesian Machine Learning.

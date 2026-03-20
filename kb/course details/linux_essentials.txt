@@ -1,0 +1,14 @@
+# Linux Essentials for Data Science (MDS161C)
+**Course Overview:**
+A Trimester 1 elective focused on navigating, scripting, and administrating Unix-like environments, a critical prerequisite for modern cloud-based data engineering and MLOps.
+
+**Key Topics Covered:**
+* Core Linux File System Hierarchy standard (FHS)
+* Basic commands: navigation, file manipulation, and permissions (chmod, chown)
+* Text processing tools: grep, awk, sed, cut
+* Advanced Bash Shell Scripting and Automating ETL pipelines
+* Process management (ps, top, cron, systemd)
+* Secure Shell (SSH), Networking, and environment variables.
+
+**Learning Outcomes:**
+Students will confidently construct, deploy, and manage data pipelines and AI models natively on remote headless AWS/GCP Ubuntu servers using pure command-line interfaces.

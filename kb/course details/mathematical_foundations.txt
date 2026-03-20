@@ -1,0 +1,14 @@
+# Mathematical Foundations for Data Science (MDS133)
+**Course Overview:**
+This core Trimester 1 module provides the essential mathematical framework powering data science, focusing heavily on Linear Algebra and Calculus optimized for high-dimensional data analysis.
+
+**Key Topics Covered:**
+* Vector spaces, subspaces, and linear independence
+* Matrices, determinants, and systems of linear equations
+* Eigenvalues, Eigenvectors, and Spectral Decomposition
+* Singular Value Decomposition (SVD) and Principal Component Analysis (PCA)
+* Differential Calculus (Partial derivatives, Gradients, Hessians)
+* Optimization: Gradient Descent and convex functions.
+
+**Learning Outcomes:**
+Students will understand the underlying mathematical mechanics inside neural networks, optimization algorithms, and dimensionality reduction, ensuring they can read and implement state-of-the-art AI research papers.

@@ -1,0 +1,14 @@
+# Geospatial Data Analytics (MDS581)
+**Course Overview:**
+This Trimester 5 Elective is built around transforming, visualizing, and predicting geographic and spatial datasets originating from hardware sensors, GPS, and IoT devices.
+
+**Key Topics Covered:**
+* Introduction to Geographic Information Systems (GIS)
+* Spatial data representations: Vector vs Raster data formats
+* Coordinate Reference Systems (CRS) and Cartographic Projections
+* Spatial queries, joins, and buffering using GeoPandas and PostGIS
+* Satellite Imagery parsing and Remote Sensing computation
+* Hotspot analysis and density mapping.
+
+**Learning Outcomes:**
+Students will engineer location-based AI services, enabling applications like dynamic fleet-routing optimization, environmental disaster prediction, and intelligent urban planning.

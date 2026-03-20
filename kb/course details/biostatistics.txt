@@ -1,0 +1,14 @@
+# Biostatistics (MDS563)
+**Course Overview:**
+An advanced Trimester 5 elective designed for students targeting the healthcare, pharmaceutical, and bioinformatics sectors. It applies mathematical statistics directly to biological and medical research.
+
+**Key Topics Covered:**
+* Epidemiology Study Designs (Cohort, Case-control, Cross-sectional)
+* Survival Analysis (Kaplan-Meier estimates, Cox Proportional Hazards)
+* Clinical Trials methodology and Biostatistical Ethics
+* Modeling health outcomes (Logistic regression for disease prediction)
+* Analyzing longitudinal data and repeated measures
+* Dealing with Right-Censored data in patient tracking software.
+
+**Learning Outcomes:**
+Graduates will be able to scientifically architect, analyze, and present medical studies with rigorous ethical boundaries, building AI systems capable of predicting patient deterioration.

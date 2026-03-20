@@ -1,0 +1,17 @@
+# Industry Capstone Project (MDS681) & Research Thesis (MDS682)
+**Course Overview:**
+Trimester 6 is entirely dedicated to synthesizing everything learned across the previous 5 trimesters into production-grade artifacts and peer-reviewed academic literature.
+
+**MDS681: Industry Capstone Project (12 Credits)**
+* Internships and massive-scale industry collaboration. 
+* End-to-end Machine Learning lifecycle development (MLOps).
+* Deploying a scalable Web API or Cloud solution featuring modern containerization (Docker/Kubernetes).
+* Final deliverable involves a fully engineered application and a stakeholder presentation.
+
+**MDS682: Research Publication and Thesis (8 Credits)**
+* Constructing a novel algorithm, architecture, or data investigation methodology.
+* Writing a mathematically rigorous, extensively cited paper formatted for IEEE or ACM journals.
+* Defending the research methodologies to a panel of academic scientists.
+
+**Learning Outcomes:**
+Students will graduate with a massive portfolio piece proving their capability to orchestrate full-stack engineering and contribute original intelligence to the global algorithmic community.

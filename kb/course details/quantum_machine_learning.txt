@@ -1,0 +1,14 @@
+# Quantum Machine Learning (MDS572)
+**Course Overview:**
+A cutting-edge Trimester 5 elective introducing students to the next frontier of artificial intelligence: computing architectures that leverage quantum mechanics.
+
+**Key Topics Covered:**
+* Introduction to Quantum Computing (Qubits, Superposition, Entanglement)
+* Quantum Logic Gates and basic Quantum Circuits (Hadamard, CNOT)
+* Translating classical data into quantum states (Quantum embeddings)
+* Quantum Support Vector Machines (QSVM)
+* Variational Quantum Eigensolvers (VQEs)
+* Quantum Neural Networks (QNNs) and hybrid classical-quantum models.
+
+**Learning Outcomes:**
+Students will master utilizing libraries like IBM's Qiskit or Google's Cirq to architect algorithms that simulate molecular chemistry or optimize logistics faster than classical Turing machines.

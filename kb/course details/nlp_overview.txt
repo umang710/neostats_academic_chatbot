@@ -1,0 +1,14 @@
+# Natural Language Processing (MDS463)
+**Course Overview:**
+Natural Language Processing (NLP) is a specialized Trimester 4 elective designed to bridge the gap between human communication and machine understanding.
+
+**Key Topics Covered:**
+* Text Preprocessing (Tokenization, Lemmatization, Stop-word removal)
+* TF-IDF and Bag of Words models
+* Word Embeddings (Word2Vec, GloVe, FastText)
+* Sequence Models (RNNs, LSTMs, GRUs)
+* Transformer Architectures (BERT, GPT, Attention Mechanisms)
+* Applications: Sentiment Analysis, Named Entity Recognition (NER), Machine Translation.
+
+**Learning Outcomes:**
+By the end of the course, students will be able to construct production-ready language models capable of classifying text, translating languages, and building conversational agents.
