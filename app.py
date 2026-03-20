@@ -15,7 +15,29 @@ from utils.web_search import search_web
 from utils.response_builder import build_prompt, get_confidence_label
 
 
+import re
+import pandas as pd
+import os
+
 # ---------- CLEAN THEME CONFIGURED IN .streamlit/config.toml ----------
+
+# ---------- DIRECT TRIMESTER LOOKUP ----------
+def get_trimester_direct(n):
+    """Bypass FAISS and directly pull the correct trimester sheet from Excel."""
+    try:
+        base = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(base, "kb", "msc_ds_structure.xlsx")
+        sheet_name = f"Trimester{n}"
+        df = pd.read_excel(path, sheet_name=sheet_name)
+        rows = []
+        for _, row in df.iterrows():
+            rows.append(
+                f"{sheet_name} — {row['Course Code']} {row['Subject Name']} — "
+                f"Credits {row['Credits']} — CIA {row['CIA Marks']} — ESE {row['ESE Marks']} — {row['Type']} course."
+            )
+        return "\n".join(rows)
+    except Exception:
+        return ""
 
 
 # ---------- QUICK QUERY ----------
@@ -162,12 +184,19 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
 
-                rag_chunks, rag_sources, score = retrieve_context(
-                    prompt,
-                    st.session_state.index,
-                    st.session_state.texts,
-                    st.session_state.sources
-                )
+                # Direct trimester lookup: detect number in query and bypass FAISS
+                trimester_match = re.search(r'trimester\s*(\d+)', prompt.lower())
+                if trimester_match:
+                    t_num = int(trimester_match.group(1))
+                    direct_data = get_trimester_direct(t_num)
+                    if direct_data:
+                        rag_chunks = [direct_data]
+                        rag_sources = [f"Trimester{t_num}"]
+                        score = 0.5
+                    else:
+                        rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources)
+                else:
+                    rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources)
 
                 web_context = ""
                 used_web = False
