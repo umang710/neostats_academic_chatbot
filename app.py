@@ -193,6 +193,8 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
 
+                dynamic_top_k = 20 if selected_model.startswith("gpt") else 7
+
                 # Direct trimester lookup: detect number in query and bypass FAISS
                 trimester_match = re.search(r'trimester\s*(\d+)', prompt.lower())
                 if trimester_match:
@@ -203,9 +205,9 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                         rag_sources = [f"Trimester{t_num}"]
                         score = 0.5
                     else:
-                        rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources)
+                        rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources, top_k=dynamic_top_k)
                 else:
-                    rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources)
+                    rag_chunks, rag_sources, score = retrieve_context(prompt, st.session_state.index, st.session_state.texts, st.session_state.sources, top_k=dynamic_top_k)
 
                 web_context = ""
                 used_web = False

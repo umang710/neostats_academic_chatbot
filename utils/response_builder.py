@@ -1,6 +1,6 @@
 from typing import List, Optional, Dict
 
-def build_prompt(query: str, rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
+def build_prompt(rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
     """
     Constructs the final prompt context payload to send to the LLM agent.
     
@@ -41,9 +41,6 @@ INSTRUCTIONS:
 3. Use the Web Search Results for AI/tech concept questions.
 4. If you don't know the answer, just say you don't know. Do not invent course names.
 5. Format your response clearly. Use bullet points for syllabus subjects if asked. Keep it mostly concise unless asked otherwise.
-
-USER QUESTION:
-{query}
 
 Please answer the user's question directly based on the instructions and background knowledge.
 """
