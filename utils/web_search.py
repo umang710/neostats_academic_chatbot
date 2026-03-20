@@ -1,4 +1,7 @@
-from ddgs import DDGS
+try:
+    from ddgs import DDGS
+except ImportError:
+    from duckduckgo_search import DDGS
 
 def search_web(query, max_results=3):
     results_text = []
