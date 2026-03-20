@@ -54,8 +54,12 @@ def load_documents() -> List[Dict[str, str]]:
                 if f.endswith(".txt"):
                     path = os.path.join(course_folder, f)
 
-                    with open(path, "r", encoding="utf-8") as file:
-                        text = file.read()
+                    try:
+                        with open(path, "r", encoding="utf-8") as file:
+                            text = file.read()
+                    except UnicodeDecodeError:
+                        with open(path, "r", encoding="latin-1", errors="replace") as file:
+                            text = file.read()
 
                     docs.append({
                         "text": text,
