@@ -172,7 +172,7 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
                 web_context = ""
                 used_web = False
 
-                if intent == "ai" or score < 1.2:
+                if intent == "ai" or score > 1.2:
                     web_context = search_web(prompt)
                     used_web = True
 
