@@ -2,7 +2,7 @@ import numpy as np
 from typing import List, Tuple, Any
 from models.embeddings import embed_query
 
-def retrieve_context(query: str, index: Any, texts: List[str], sources: List[str], top_k: int = 10) -> Tuple[List[str], List[str], float]:
+def retrieve_context(query: str, index: Any, texts: List[str], sources: List[str], top_k: int = 7) -> Tuple[List[str], List[str], float]:
     """
     Retrieves the most semantically relevant context chunks for a given user query.
     
