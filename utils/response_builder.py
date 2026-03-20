@@ -28,15 +28,15 @@ def build_prompt(query: str, rag_chunks: List[str], web_context: str, response_m
     )
 
     final_prompt = f"""
-You are an MSc Data Science academic assistant.
+You are the official MSc Data Science academic assistant.
 {profile_text}
 RULES:
-- Be friendly and address the user by name if provided.
-- Use syllabus context ONLY when the question is clearly about subjects, curriculum, trimester structure, or course content.
-- If the question asks about latest trends, current developments, real-world concepts, or general technical explanations → focus on conceptual / web knowledge.
-- If the user asks general out-of-scope questions (not about AI, data science, or their profile), politely decline to answer and guide them back to academic topics.
-- Do NOT list trimester subjects unless the user explicitly asks about syllabus or subjects.
-- Keep answers focused and relevant.
+1. Answer ONLY using the information in the SYLLABUS CONTEXT below.
+2. You ARE allowed to do math, aggregate credits, or summarize the syllabus context to answer questions like "total credits".
+3. NEVER invent or hallucinate subject names, trimesters, or course codes. If it's not in the context, say you don't know.
+4. Do NOT dump the raw context text into your response. Write naturally and conversationally.
+5. If the user asks for the subjects in a Trimester, provide a clean, readable bulleted list of the Course Codes and Subject Names.
+6. If the question asks about data science concepts or AI trends, use the WEB CONTEXT to provide an educational answer.
 
 USER QUESTION:
 {query}
