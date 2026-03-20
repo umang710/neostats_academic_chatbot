@@ -1,0 +1,14 @@
+# Cloud Computing for Data Analytics (MDS304)
+**Course Overview:**
+A Trimester 3 core course designed to transition students from local laptop-based computations to massive, distributed cloud infrastructures capable of processing petabytes of data.
+
+**Key Topics Covered:**
+* Cloud Infrastructure Models (IaaS, PaaS, SaaS).
+* Virtualization and Containerization (Docker, Kubernetes).
+* Distributed Data processing (Apache Hadoop, Spark).
+* AWS, Google Cloud (GCP), and Microsoft Azure ecosystems.
+* Serverless computing (AWS Lambda, Cloud Functions).
+* Cloud Security, IAM, and Cost Optimization.
+
+**Learning Outcomes:**
+Engineers will be capable of archiving, processing, and deploying machine learning models on globally distributed, infinitely scalable cloud networks.

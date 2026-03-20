@@ -1,0 +1,14 @@
+# Evolutionary Algorithms (MDS571)
+**Course Overview:**
+A Trimester 5 Elective focused on biologically inspired metaheuristic optimization algorithms based on the principles of natural selection and genetics.
+
+**Key Topics Covered:**
+* Genetic Algorithms (Selection, Crossover, Mutation).
+* Genetic Programming and building evolving code.
+* Particle Swarm Optimization (PSO).
+* Ant Colony Optimization (ACO) for routing problems.
+* Multi-objective Evolutionary Optimization (NSGA-II).
+* Applications in hyperparameter tuning and neural architecture search.
+
+**Learning Outcomes:**
+Students will be able to construct self-evolving optimization algorithms capable of finding global minimums in mathematically chaotic or non-differentiable environments.

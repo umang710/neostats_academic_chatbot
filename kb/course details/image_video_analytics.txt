@@ -1,0 +1,14 @@
+# Image and Video Analytics (MDS583)
+**Course Overview:**
+A Trimester 5 Elective commonly known as Computer Vision (CV), dealing with how computers can gain high-level understanding from digital images or videos.
+
+**Key Topics Covered:**
+* Image Filtering, Edge Detection (Canny, Sobel), and Transformations.
+* Convolutional Neural Networks (CNNs) (ResNet, VGG, Inception).
+* Object Detection architectures (YOLO, Faster R-CNN, SSD).
+* Image Segmentation (U-Net, Mask R-CNN).
+* Video tracking, Optical Flow, and Action Recognition.
+* Generative Adversarial Networks (GANs) for image synthesis.
+
+**Learning Outcomes:**
+Engineers will be capable of building visual intelligence systems for autonomous driving, medical image diagnosis (MRI/X-Ray parsing), and real-time surveillance processing.

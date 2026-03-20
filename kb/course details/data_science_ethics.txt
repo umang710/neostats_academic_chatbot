@@ -1,0 +1,14 @@
+# Data Science Ethics (MDS105)
+**Course Overview:**
+A core Trimester 1 seminar dedicated to understanding the philosophical, societal, and legal implications of deploying artificial intelligence and automated decision-making software.
+
+**Key Topics Covered:**
+* Algorithmic Bias and Fairness.
+* Data Privacy laws (GDPR, CCPA).
+* The Black Box problem and Explainable AI (XAI).
+* Ethical implications of facial recognition and predictive policing.
+* Intellectual Property in the era of Generative AI.
+* Moral frameworks for self-driving vehicles and autonomous systems.
+
+**Learning Outcomes:**
+Students will learn how to audit AI algorithms for racial or gender biases and ensure their data pipelines comply with rapidly evolving international privacy laws.

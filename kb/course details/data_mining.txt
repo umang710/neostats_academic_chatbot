@@ -1,0 +1,14 @@
+# Data Mining (MDS103)
+**Course Overview:**
+A foundational Trimester 1 core course focused on discovering patterns, anomalies, and correlations within large relational databases to predict outcomes.
+
+**Key Topics Covered:**
+* Knowledge Discovery in Databases (KDD) process.
+* Frequent Pattern Mining (Apriori and FP-Growth algorithms).
+* Association Rule Learning.
+* Clustering methodologies (K-Means, DBSCAN, Hierarchical).
+* Classification techniques (Decision Trees, Naive Bayes, k-NN).
+* Anomaly and Outlier detection mechanisms.
+
+**Learning Outcomes:**
+Students will be able to extract actionable business intelligence and hidden structural relationships from massive, unstructured data lakes.
