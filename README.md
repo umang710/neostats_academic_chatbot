@@ -70,5 +70,3 @@ project/
    python -m streamlit run app.py
    ```
 
-5. **Deploy to Streamlit Cloud:**
-   Push this repository to GitHub, log into [Streamlit Cloud](https://streamlit.io/cloud), and initiate a new app deployment targeting the `app.py` file. Set your `GROQ_API_KEY` in the Streamlit Cloud advanced settings tab.
