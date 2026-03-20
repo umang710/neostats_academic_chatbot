@@ -1,18 +1,17 @@
 from typing import List, Optional, Dict
 
-def build_prompt(query: str, rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
+def build_system_context(rag_chunks: List[str], web_context: str, response_mode: str, user_profile: Optional[Dict[str, str]] = None) -> str:
     """
-    Constructs the final prompt context payload to send to the LLM agent.
+    Constructs the system prompt payload containing rules and context.
     
     Args:
-        query (str): The natural language user query.
         rag_chunks (List[str]): Text segments retrieved from local syllabus FAISS index.
         web_context (str): Real-time live context retrieved via DuckDuckGo.
         response_mode (str): Requested response verbosity style.
         user_profile (Optional[Dict[str, str]]): Standard active user session information payload.
         
     Returns:
-        str: The fully synthesized context injection string block.
+        str: The fully synthesized SystemMessage content string.
     """
     rag_text = "\n\n".join(rag_chunks) if rag_chunks else ""
     web_text = web_context if web_context else ""
@@ -27,19 +26,16 @@ def build_prompt(query: str, rag_chunks: List[str], web_context: str, response_m
         else "Give structured academic explanation. BUT if the question asks about syllabus subjects, FIRST give a clean bullet list of subjects, THEN a short explanation."
     )
 
-    final_prompt = f"""
+    system_prompt = f"""
 You are the official MSc Data Science academic assistant.
 {profile_text}
 RULES:
-1. Answer ONLY using the information in the SYLLABUS CONTEXT below.
+1. Answer ONLY using the information in the SYLLABUS CONTEXT below. Focus specifically on the user's latest query.
 2. You ARE allowed to do math, aggregate credits, or summarize the syllabus context to answer questions like "total credits".
 3. NEVER invent or hallucinate subject names, trimesters, or course codes. If it's not in the context, say you don't know.
 4. Do NOT dump the raw context text into your response. Write naturally and conversationally.
 5. If the user asks for the subjects in a Trimester, provide a clean, readable bulleted list of the Course Codes and Subject Names.
 6. If the question asks about data science concepts or AI trends, use the WEB CONTEXT to provide an educational answer.
-
-USER QUESTION:
-{query}
 
 SYLLABUS CONTEXT:
 {rag_text}
@@ -49,11 +45,8 @@ WEB CONTEXT:
 
 RESPONSE STYLE:
 {style_block}
-
-Now produce the best accurate answer.
 """
-
-    return final_prompt
+    return system_prompt
 
 def get_confidence_label(score: float) -> str:
     """
