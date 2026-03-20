@@ -1,0 +1,8 @@
+Database Technologies Course Overview
+
+Topics Covered:
+- Relational database design concepts
+- SQL queries and normalization
+- Data warehouse fundamentals
+- Introduction to NoSQL databases
+- MongoDB operations and distributed database concepts

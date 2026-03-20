@@ -1,0 +1,7 @@
+Neural Networks and Deep Learning Course Overview
+
+Topics Covered:
+- Fundamentals of artificial neural networks
+- Backpropagation and training strategies
+- Deep learning architectures
+- Applications in prediction and pattern recognition

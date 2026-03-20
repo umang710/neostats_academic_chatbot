@@ -1,0 +1,7 @@
+Big Data Analytics Course Overview
+
+Topics Covered:
+- Distributed data processing concepts
+- Hadoop and big data ecosystem
+- Scalable analytics techniques
+- Real world big data applications

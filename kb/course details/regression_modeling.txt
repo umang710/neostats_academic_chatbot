@@ -1,0 +1,10 @@
+Regression Modeling Course Overview
+
+Topics Covered:
+- Simple and multiple linear regression
+- Model assumptions and diagnostics
+- Residual analysis and multicollinearity
+- Model selection techniques
+- Introduction to nonlinear regression models
+
+Focus on statistical modelling for prediction and inference.

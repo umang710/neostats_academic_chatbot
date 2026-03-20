@@ -1,0 +1,7 @@
+Time Series and Forecasting Techniques Overview
+
+Topics Covered:
+- Trend and seasonal analysis
+- AR, MA and ARIMA models
+- Forecasting methodologies
+- Applications in financial and business analytics

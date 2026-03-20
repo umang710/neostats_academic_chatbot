@@ -1,0 +1,8 @@
+Java Programming Course Overview
+
+Topics Covered:
+- Object oriented programming principles
+- Classes, inheritance and interfaces
+- Exception handling and file processing
+- Multithreading basics
+- Use of Java libraries for data science applications

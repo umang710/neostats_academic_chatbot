@@ -1,0 +1,7 @@
+Categorical Data Analysis Course Overview
+
+Topics Covered:
+- Analysis of contingency tables
+- Logistic regression models
+- Generalized linear models
+- Statistical inference for categorical responses

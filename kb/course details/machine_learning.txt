@@ -1,0 +1,11 @@
+Machine Learning Course Overview
+
+Topics Covered:
+- Fundamentals of supervised and unsupervised learning
+- Dimensionality reduction techniques
+- Classification and regression models
+- Kernel based learning methods
+- Neural network basics and ensemble learning
+- Clustering techniques such as K-means and hierarchical clustering
+
+Focus on conceptual understanding and real world data science applications.
