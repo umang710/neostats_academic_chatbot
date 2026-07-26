@@ -22,6 +22,7 @@ This chatbot follows a **Conditional Routing Agent Workflow**, stepping beyond a
 * **Multi-Modal Document Parsing:** Directly extracts knowledge from structural `.xlsx` spreadshets, `.txt` files, and `.pdf` documents using `pandas` and `pypdf`.
 * **Agentic Web Augmentation:** Seamlessly falls back to real-time DuckDuckGo web scraping when internal database context runs dry.
 * **Intelligent Chunking:** Custom text-splitter logic strictly enforces word-boundaries rather than raw character counts to preserve semantic context.
+* **Dynamic Model Discovery:** Automatically queries Google's backend on boot to retrieve and utilize the absolute latest Gemini API models, guaranteeing the application never hardcodes deprecated endpoints.
 * **Clean Theming Engine:** Engineered with a custom `.streamlit/config.toml` that perfectly supports native system Light/Dark modes without CSS hacking.
 * **Component Modularity:** A robust `utils/` and `models/` separation architecture, complete with extensive `try/except` safeguards and `config/config.py` environment variable loading setups.
 
