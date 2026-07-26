@@ -21,6 +21,24 @@ import os
 
 # ---------- CLEAN THEME CONFIGURED IN .streamlit/config.toml ----------
 
+# ---------- DYNAMIC MODEL DISCOVERY ----------
+@st.cache_data(ttl=3600)
+def get_available_models():
+    try:
+        import google.generativeai as genai
+        from config.config import get_api_key
+        api_key = get_api_key("gemini")
+        if not api_key:
+            return ["gemini-flash-latest"]
+        genai.configure(api_key=api_key)
+        models = [
+            m.name for m in genai.list_models() 
+            if "generateContent" in m.supported_generation_methods
+        ]
+        return models if models else ["gemini-flash-latest"]
+    except Exception:
+        return ["gemini-flash-latest"]
+
 # ---------- DIRECT TRIMESTER LOOKUP ----------
 def get_trimester_direct(n):
     """Bypass FAISS and directly pull the correct trimester sheet from Excel."""
@@ -140,27 +158,6 @@ def chat_page(response_mode, selected_model):
 
     st.title("Academic Intelligence Assistant")
     st.caption("Context-aware MSc Data Science knowledge system")
-
-    if selected_model == "DEBUG: Test API Key":
-        st.error("Running Debug Test...")
-        try:
-            import google.generativeai as genai
-            from config.config import get_api_key
-            api_key = get_api_key("gemini")
-            if not api_key:
-                st.error("ERROR: No GEMINI_API_KEY found in Streamlit secrets!")
-                return
-            genai.configure(api_key=api_key)
-            models = [m.name for m in genai.list_models()]
-            st.success("API Key successfully authenticated!")
-            st.write("### Models your API Key is allowed to use:")
-            st.write(models)
-            
-            if len(models) == 0:
-                st.error("Your API Key has 0 models assigned to it. You likely generated it from a Google Cloud Project without the 'Generative Language API' enabled. Go to https://aistudio.google.com/app/apikey to get a correct key.")
-        except Exception as e:
-            st.error(f"Debug Failed: {e}")
-        return
 
     trimester_buttons()
 
@@ -315,14 +312,11 @@ def main():
             index=1
         )
 
+        available_models = get_available_models()
+        
         selected_model = st.selectbox(
             "Model",
-            [
-                "gemini-flash-latest",
-                "gemini-pro-latest",
-                "gemini-3.5-flash",
-                "DEBUG: Test API Key"
-            ]
+            available_models
         )
 
         if page == "Chat":
