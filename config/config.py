@@ -1,14 +1,11 @@
 import os
 import streamlit as st
 
-def get_api_key(provider="groq"):
+def get_api_key(provider="gemini"):
     """Fetch API keys to abstract logic from models."""
     try:
-        if provider == "gemini":
-            key_name = "GEMINI_API_KEY"
-        else:
-            key_name = "GROQ_API_KEY"
-            
+        key_name = "GEMINI_API_KEY"
+        
         api_key = os.getenv(key_name)
         if not api_key and key_name in st.secrets:
             api_key = st.secrets[key_name]
