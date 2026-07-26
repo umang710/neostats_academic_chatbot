@@ -318,9 +318,9 @@ def main():
         selected_model = st.selectbox(
             "Model",
             [
-                "gemini-1.5-flash-latest",
-                "gemini-1.5-pro-latest",
-                "gemini-pro",
+                "gemini-flash-latest",
+                "gemini-pro-latest",
+                "gemini-3.5-flash",
                 "DEBUG: Test API Key"
             ]
         )
