@@ -63,10 +63,10 @@ project/
    ```
 
 3. **Set your Environment Variables:**
-   Create a `.streamlit/secrets.toml` file or set your system environment variables. You can configure either Groq or OpenAI depending on your preference:
+   Create a `.streamlit/secrets.toml` file or set your system environment variables. You can configure either Groq or Google Gemini depending on your preference:
    ```toml
    GROQ_API_KEY="gsk_..."
-   OPENAI_API_KEY="sk-proj-..."
+   GEMINI_API_KEY="AIza..."
    ```
 
 4. **Run the Application Locally:**

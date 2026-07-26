@@ -1,9 +1,8 @@
 import os
 import streamlit as st
-from langchain_groq import ChatGroq
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from config.config import get_api_key
-
+from langchain_groq import ChatGroq
 
 def get_chatgroq_model(model_name):
 
@@ -24,17 +23,17 @@ def get_chatgroq_model(model_name):
     except Exception as e:
         raise RuntimeError(f"Failed to initialize Groq model: {str(e)}")
 
-def get_openai_model(model_name="gpt-4o"):
+def get_gemini_model(model_name="gemini-1.5-pro"):
     try:
-        api_key = get_api_key("openai")
+        api_key = get_api_key("gemini")
         if not api_key:
             raise RuntimeError(
-                "OpenAI API key not configured. Set env var or Streamlit secrets in config/config.py"
+                "Gemini API key not configured. Set env var or Streamlit secrets in config/config.py"
             )
-        return ChatOpenAI(
-            api_key=api_key,
+        return ChatGoogleGenerativeAI(
+            google_api_key=api_key,
             model=model_name,
             temperature=0.2
         )
     except Exception as e:
-        raise RuntimeError(f"Failed to initialize OpenAI model: {str(e)}")
+        raise RuntimeError(f"Failed to initialize Gemini model: {str(e)}")

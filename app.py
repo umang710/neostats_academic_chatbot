@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from models.llm import get_chatgroq_model, get_openai_model
+from models.llm import get_chatgroq_model, get_gemini_model
 from utils.document_loader import load_documents
 from utils.text_splitter import split_documents
 from utils.vector_store import build_vector_store
@@ -143,8 +143,8 @@ def chat_page(response_mode, selected_model):
 
     trimester_buttons()
 
-    if selected_model.startswith("gpt"):
-        chat_model = get_openai_model(selected_model)
+    if selected_model.startswith("gemini"):
+        chat_model = get_gemini_model(selected_model)
     else:
         chat_model = get_chatgroq_model(selected_model)
 
@@ -193,7 +193,7 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
 
-                dynamic_top_k = 20 if selected_model.startswith("gpt") else 7
+                dynamic_top_k = 20 if selected_model.startswith("gemini") else 7
 
                 # Direct trimester lookup: detect number in query and bypass FAISS
                 trimester_match = re.search(r'trimester\s*(\d+)', prompt.lower())
@@ -300,7 +300,8 @@ def main():
         selected_model = st.selectbox(
             "Model",
             [
-                "gpt-4o",
+                "gemini-1.5-pro",
+                "gemini-1.5-flash",
                 "llama-3.1-8b-instant",
                 "llama3-8b-8192",
             ]

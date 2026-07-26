@@ -1,5 +1,4 @@
 streamlit 
-langchain-openai 
 langchain-groq 
 langchain-google-genai 
 langchain-core
