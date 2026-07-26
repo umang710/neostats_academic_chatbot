@@ -1,5 +1,7 @@
 # Academic Chatbot: MSc Data Science
 
+**Live Demo:** [https://academicchatbotumang.streamlit.app/](https://academicchatbotumang.streamlit.app/)
+
 An intelligent, context-aware chatbot developed as an AI engineering blueprint. This application is specifically tailored as an **MSc Data Science Academic Assistant**, designed to help students navigate their syllabus, explore course credits, and stay continuously updated with the latest trends in artificial intelligence.
 
 ---
@@ -37,7 +39,7 @@ project/
 │   └── course_details/   # Secondary textual fallbacks
 ├── models/
 │   ├── embeddings.py     # Local SentenceTransformer embedding invocation
-│   └── llm.py            # LangChain ChatGroq initialization
+│   └── llm.py            # Google Gemini model initialization
 ├── utils/
 │   ├── document_loader.py # Multi-format document parsing logic
 │   ├── text_splitter.py   # Word-boundary aware chunking
@@ -63,9 +65,8 @@ project/
    ```
 
 3. **Set your Environment Variables:**
-   Create a `.streamlit/secrets.toml` file or set your system environment variables. You can configure either Groq or Google Gemini depending on your preference:
+   Create a `.streamlit/secrets.toml` file or set your system environment variables.
    ```toml
-   GROQ_API_KEY="gsk_..."
    GEMINI_API_KEY="AIza..."
    ```
 
