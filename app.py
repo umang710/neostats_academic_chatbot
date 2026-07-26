@@ -154,12 +154,12 @@ def build_index():
 # ---------- TRIMESTER BUTTONS ----------
 def trimester_buttons():
 
-    st.markdown("#### Trimester Explorer")
+    st.markdown("#### 📚 Trimester Explorer")
 
     cols = st.columns(6)
 
     for i in range(6):
-        if cols[i].button(f"T{i+1}", key=f"t{i}"):
+        if cols[i].button(f"Tri {i+1}", use_container_width=True, key=f"t{i}"):
             st.session_state.quick_query = quick_trimester_query(i+1)
 
 
@@ -266,9 +266,9 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
 
                 st.markdown(
                     f"""
-                    <div class="card">
-                    Sources: {', '.join(set(rag_sources)) if rag_sources else "Academic knowledge base"} <br>
-                    Confidence: {confidence}
+                    <div class="source-card">
+                    <b>Sources:</b> {', '.join(set(rag_sources)) if rag_sources else "Academic knowledge base"} <br>
+                    <b>Confidence:</b> {confidence}
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -301,8 +301,36 @@ def main():
 
     st.set_page_config(
         page_title="Academic Intelligence Assistant",
-        layout="wide"
+        layout="wide",
+        page_icon="🎓"
     )
+
+    # Inject Premium CSS for smooth UX
+    st.markdown("""
+        <style>
+        div[data-testid="stButton"] button {
+            border-radius: 12px;
+            border: 1px solid rgba(128,128,128,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+        }
+        div[data-testid="stButton"] button:hover {
+            border-color: #ff4b4b;
+            color: #ff4b4b;
+            box-shadow: 0 4px 12px rgba(255,75,75,0.15);
+            transform: translateY(-2px);
+        }
+        .source-card {
+            background-color: rgba(128,128,128,0.05);
+            border-left: 4px solid #ff4b4b;
+            padding: 12px 16px;
+            border-radius: 4px 8px 8px 4px;
+            margin-top: 12px;
+            font-size: 0.85em;
+            color: gray;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
     with st.sidebar:
 
@@ -324,9 +352,13 @@ def main():
 
         available_models = get_available_models()
         
+        def format_model_name(m):
+            return m.replace("models/", "").replace("-", " ").title()
+
         selected_model = st.selectbox(
-            "Model",
-            available_models
+            "Model Engine",
+            available_models,
+            format_func=format_model_name
         )
 
         if page == "Chat":
