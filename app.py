@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from models.llm import get_gemini_model
+from models.llm import get_chat_model
 from utils.document_loader import load_documents
 from utils.text_splitter import split_documents
 from utils.vector_store import build_vector_store
@@ -25,29 +25,33 @@ import os
 @st.cache_data(ttl=3600)
 def get_available_models():
     try:
-        import google.generativeai as genai
+        from groq import Groq
         from config.config import get_api_key
-        api_key = get_api_key("gemini")
+        api_key = get_api_key("groq")
         if not api_key:
-            return ["gemini-flash-latest"]
-        genai.configure(api_key=api_key)
-        models = [
-            m.name for m in genai.list_models() 
-            if "generateContent" in m.supported_generation_methods
-        ]
+            return ["llama3-8b-8192"]
+        client = Groq(api_key=api_key)
+        models_data = client.models.list()
         
-        # Guarantee 100% free-tier stability by strictly allowing known unlocked models
+        models = [m.id for m in models_data.data if m.active]
+        
+        # Guarantee 100% free-tier stability by strictly allowing known fast Groq LPU models
         safe_list = [
-            "models/gemini-2.0-flash", 
-            "models/gemini-2.0-flash-lite", 
-            "models/gemini-3.5-flash", 
-            "models/gemini-3.5-flash-lite"
+            "llama3-8b-8192", 
+            "llama3-70b-8192", 
+            "mixtral-8x7b-32768", 
+            "gemma2-9b-it",
+            "llama-3.1-8b-instant",
+            "llama-3.1-70b-versatile"
         ]
         
         free_models = [m for m in models if m in safe_list]
-        return free_models if free_models else ["models/gemini-2.0-flash"]
+        # Sort to put fastest 8b/instant models first
+        free_models.sort(key=lambda x: ("8b" not in x, x))
+        
+        return free_models if free_models else ["llama3-8b-8192"]
     except Exception:
-        return ["models/gemini-2.0-flash"]
+        return ["llama3-8b-8192"]
 
 # ---------- DIRECT TRIMESTER LOOKUP ----------
 def get_trimester_direct(n):
@@ -171,7 +175,7 @@ def chat_page(response_mode, selected_model):
 
     trimester_buttons()
 
-    chat_model = get_gemini_model(selected_model)
+    chat_model = get_chat_model(selected_model)
 
     if "vector_ready" not in st.session_state:
         index, texts, sources = build_index()
@@ -218,7 +222,7 @@ You can ask about syllabus, subjects, credits, projects or AI concepts.
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
 
-                dynamic_top_k = 20 if selected_model.startswith("gemini") else 7
+                dynamic_top_k = 15 if "70b" in selected_model else 7
 
                 # Direct trimester lookup: detect number in query and bypass FAISS
                 trimester_match = re.search(r'trimester\s*(\d+)', prompt.lower())
@@ -353,7 +357,7 @@ def main():
         available_models = get_available_models()
         
         def format_model_name(m):
-            return m.replace("models/", "").replace("-", " ").title()
+            return m.replace("-", " ").title()
 
         selected_model = st.selectbox(
             "Model Engine",

@@ -1,6 +1,6 @@
 streamlit 
-google-generativeai
-langchain-google-genai>=1.0.3
+groq
+langchain-groq
 langchain-core
 sentence-transformers
 faiss-cpu
