@@ -3,7 +3,7 @@ import streamlit as st
 from langchain_google_genai import ChatGoogleGenerativeAI
 from config.config import get_api_key
 
-def get_gemini_model(model_name="gemini-flash-latest"):
+def get_gemini_model(model_name="models/gemini-2.0-flash"):
     try:
         api_key = get_api_key("gemini")
         if not api_key:

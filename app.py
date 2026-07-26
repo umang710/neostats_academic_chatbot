@@ -35,9 +35,19 @@ def get_available_models():
             m.name for m in genai.list_models() 
             if "generateContent" in m.supported_generation_methods
         ]
-        return models if models else ["gemini-flash-latest"]
+        
+        # Guarantee 100% free-tier stability by strictly allowing known unlocked models
+        safe_list = [
+            "models/gemini-2.0-flash", 
+            "models/gemini-2.0-flash-lite", 
+            "models/gemini-3.5-flash", 
+            "models/gemini-3.5-flash-lite"
+        ]
+        
+        free_models = [m for m in models if m in safe_list]
+        return free_models if free_models else ["models/gemini-2.0-flash"]
     except Exception:
-        return ["gemini-flash-latest"]
+        return ["models/gemini-2.0-flash"]
 
 # ---------- DIRECT TRIMESTER LOOKUP ----------
 def get_trimester_direct(n):
