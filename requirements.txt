@@ -1,5 +1,6 @@
 streamlit 
-langchain-google-genai 
+google-generativeai
+langchain-google-genai>=1.0.3
 langchain-core
 sentence-transformers
 faiss-cpu
