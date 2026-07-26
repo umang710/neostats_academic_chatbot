@@ -1,4 +1,13 @@
 import streamlit as st
+
+st.set_page_config(
+    page_title="Academic Intelligence Assistant",
+    page_icon="🎓",
+    menu_items={
+        'About': "An intelligent, context-aware RAG assistant built for my MSc Data Science batchmates at Christ University."
+    }
+)
+
 import os
 import sys
 import time
@@ -171,7 +180,7 @@ def trimester_buttons():
 def chat_page(response_mode, selected_model):
 
     st.title("Academic Intelligence Assistant")
-    st.caption("Context-aware MSc Data Science knowledge system")
+    st.caption("Context-aware knowledge system built for MSc Data Science batchmates at Christ University")
 
     trimester_buttons()
 
