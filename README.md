@@ -53,8 +53,8 @@ project/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/neostats_academic_chatbot.git
-   cd neostats_academic_chatbot
+   git clone https://github.com/yourusername/Academic_chatbot.git
+   cd Academic_chatbot
    ```
 
 2. **Install dependencies:**
